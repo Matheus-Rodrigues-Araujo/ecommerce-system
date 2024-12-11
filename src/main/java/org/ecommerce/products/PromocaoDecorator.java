@@ -1,6 +1,6 @@
 package org.ecommerce.products;
 
-abstract class PromocaoDecorator extends Produto {
+public abstract class PromocaoDecorator extends Produto {
     protected Produto produto;
 
     public PromocaoDecorator(Produto produto) {
