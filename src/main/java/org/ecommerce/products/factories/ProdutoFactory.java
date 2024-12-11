@@ -1,4 +1,7 @@
 package org.ecommerce.products.factories;
 
-public class ProdutoFactory {
+import org.ecommerce.products.Produto;
+
+public abstract class ProdutoFactory {
+    public abstract Produto criarProduto(String nome, double preco);
 }
