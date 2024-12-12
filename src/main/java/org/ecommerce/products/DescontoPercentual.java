@@ -1,7 +1,7 @@
 package org.ecommerce.products;
 
 public class DescontoPercentual extends PromocaoDecorator {
-    private double percentual;
+    private final double percentual;
 
     public DescontoPercentual(Produto produto, double percentual) {
         super(produto);
