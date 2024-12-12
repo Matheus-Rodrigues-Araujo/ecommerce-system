@@ -7,7 +7,7 @@ public class CalculadorFrete {
         this.estrategiaFrete = estrategiaFrete;
     }
 
-    public double calcular(double distancia, double peso){
+    public double calcular(double distancia, double peso) {
         return estrategiaFrete.calcularFrete(distancia, peso);
     }
 

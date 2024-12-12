@@ -6,6 +6,6 @@ import org.ecommerce.products.ProdutoBase;
 public class ProdutoDigitalFactory extends ProdutoFactory {
     @Override
     public Produto criarProduto(String nome, double preco) {
-        return new ProdutoBase(STR."\{nome} (Digital)", preco);
+        return new ProdutoBase(nome + "(Digital)", preco);
     }
 }

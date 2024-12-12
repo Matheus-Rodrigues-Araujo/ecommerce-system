@@ -8,7 +8,7 @@ public class PedidoExpressoFactory extends PedidoFactory {
         return new Pedido(tipo) {
             @Override
             public void processar() {
-                System.out.println(STR."Processando pedido expresso: \{tipo}");
+                System.out.println("Processando pedido expresso: " + tipo);
             }
         };
     }

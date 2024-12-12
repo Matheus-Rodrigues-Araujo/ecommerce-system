@@ -9,7 +9,7 @@ public class Cliente implements Observador {
 
     @Override
     public void atualizar(String mensagem) {
-        System.out.println(STR."Notificação para \{nome}:\{mensagem}");
+        System.out.println("Notificação para " + nome + ": " + mensagem);
     }
 
 }
