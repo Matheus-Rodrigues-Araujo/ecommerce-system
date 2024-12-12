@@ -7,7 +7,6 @@ public class ProdutoBase extends Produto {
 
     @Override
     public double getPreco() {
-        System.out.println("Preço Base: " + preco);
         return preco;
     }
 }

@@ -10,8 +10,6 @@ public class DescontoPercentual extends PromocaoDecorator {
 
     @Override
     public double getPreco() {
-        double precoComDesconto = produto.getPreco() * (1 - percentual / 100);
-        System.out.println("C/Desconto Percentual:" + precoComDesconto);
-        return precoComDesconto;
+        return produto.getPreco() * (1 - percentual / 100);
     }
 }
