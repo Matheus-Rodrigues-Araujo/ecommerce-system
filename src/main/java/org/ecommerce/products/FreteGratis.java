@@ -7,6 +7,7 @@ public class FreteGratis extends PromocaoDecorator {
 
     @Override
     public double getPreco() {
+        System.out.println("*** Frete grátis disponível ***");
         return produto.getPreco();
     }
 
