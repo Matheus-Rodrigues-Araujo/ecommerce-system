@@ -27,8 +27,19 @@ public class Main {
         pedido.processar();
 
         ProdutoNotifier notifier = new ProdutoNotifier();
-        Cliente cliente = new Cliente("Brksedu");
-        notifier.adicionarObservador(cliente);
+
+        Cliente cliente1 = new Cliente("Brksedu");
+        Cliente cliente2 = new Cliente("Davi Jones");
+        Cliente cliente3 = new Cliente("GameplayRJ");
+        Cliente cliente4 = new Cliente("Michael Jackson");
+        Cliente cliente5 = new Cliente("Kratos");
+
+        notifier.adicionarObservador(cliente1);
+        notifier.adicionarObservador(cliente2);
+        notifier.adicionarObservador(cliente3);
+        notifier.adicionarObservador(cliente4);
+        notifier.adicionarObservador(cliente5);
+
         notifier.notificar("Novo produto disponível");
 
     }
