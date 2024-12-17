@@ -19,11 +19,15 @@ public class Main {
         produto = new DescontoPercentual(produto, 5);
         System.out.println("C/Desconto: " + produto.getPreco());
 
+        System.out.println();
+
         System.out.println("--------- STRATEGY ---------");
         CalculadorFrete calculadorFrete = new CalculadorFrete();
         calculadorFrete.setEstrategiaFrete(new FretePorPesoStrategy());
         calculadorFrete.setEstrategiaFrete(new FretePorDistanciaStrategy());
         System.out.println("Custo de frete: " + calculadorFrete.calcular(100,2));
+
+        System.out.println();
 
         System.out.println("--------- FACTORY ----------");
         // Pedido Padrão
@@ -35,6 +39,8 @@ public class Main {
         // Pedido Expresso
         Pedido pedidoExpresso = PedidoFactoryManager.criarPedido(TipoPedido.EXPRESSO, "Notebook Gamer");
         pedidoExpresso.processar();
+
+        System.out.println();
 
         System.out.println("--------- OBSERVER ---------");
 
