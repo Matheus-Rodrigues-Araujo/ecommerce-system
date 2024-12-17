@@ -2,12 +2,12 @@ package org.ecommerce;
 
 import org.ecommerce.notifications.Cliente;
 import org.ecommerce.notifications.ProdutoNotifier;
-import org.ecommerce.orders.Pedido;
-import org.ecommerce.orders.TipoPedido;
-import org.ecommerce.orders.factories.PedidoFactoryManager;
 import org.ecommerce.products.FreteGratis;
 import org.ecommerce.products.Produto;
 import org.ecommerce.products.ProdutoBase;
+import org.ecommerce.products.factories.ProdutoDigitalFactory;
+import org.ecommerce.products.factories.ProdutoFactory;
+import org.ecommerce.products.factories.ProdutoFisicoFactory;
 import org.ecommerce.shipping.CalculadorFrete;
 import org.ecommerce.shipping.FreteGratisStrategy;
 
@@ -28,8 +28,15 @@ public class Exemplo2 {
         System.out.println();
 
         System.out.println("--------- FACTORY ----------");
-        Pedido pedidoPadrao = PedidoFactoryManager.criarPedido(TipoPedido.PADRAO, produto.getNome());
-        pedidoPadrao.processar();
+        // Factory de Produtos
+        ProdutoFactory produtoFisicoFactory = new ProdutoFisicoFactory();
+        ProdutoFactory produtoDigitalFactory = new ProdutoDigitalFactory();
+
+        Produto produtoFisico = produtoFisicoFactory.criarProduto("Notebook Dell", 4500.00);
+        Produto produtoDigital = produtoDigitalFactory.criarProduto("E-book Clean Code", 49.99);
+
+        System.out.println("Produto 1: " + produtoFisico.getNome() + " - Preço: R$ " + produtoFisico.getPreco());
+        System.out.println("Produto 2: " + produtoDigital.getNome() + " - Preço: R$ " + produtoDigital.getPreco());
         System.out.println();
         System.out.println("--------- OBSERVER ---------");
 

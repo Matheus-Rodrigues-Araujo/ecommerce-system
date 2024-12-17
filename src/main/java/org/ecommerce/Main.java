@@ -31,13 +31,13 @@ public class Main {
 
         System.out.println("--------- FACTORY ----------");
         // Pedido Padrão
-        Pedido pedidoPadrao = PedidoFactoryManager.criarPedido(TipoPedido.PADRAO, "TV 42 polegadas");
+        Pedido pedidoPadrao = PedidoFactoryManager.criarPedido(TipoPedido.PADRAO, "Pedido de TV 42 polegadas");
         pedidoPadrao.processar();
 
         System.out.println("----------------------------");
 
         // Pedido Expresso
-        Pedido pedidoExpresso = PedidoFactoryManager.criarPedido(TipoPedido.EXPRESSO, "Notebook Gamer");
+        Pedido pedidoExpresso = PedidoFactoryManager.criarPedido(TipoPedido.EXPRESSO, "Pedido de Notebook Gamer");
         pedidoExpresso.processar();
 
         System.out.println();
