@@ -11,6 +11,7 @@ public abstract class Produto {
 
     public String getNome(){
         return nome;
-    };
+    }
+
     public abstract double getPreco();
 }
