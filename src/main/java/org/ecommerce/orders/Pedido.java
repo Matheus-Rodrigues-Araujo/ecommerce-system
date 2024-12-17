@@ -1,10 +1,10 @@
 package org.ecommerce.orders;
 
 public abstract class Pedido {
-    protected String tipo;
+    protected String descrição;
 
-    public Pedido(String tipo){
-        this.tipo = tipo;
+    public Pedido(String descrição){
+        this.descrição = descrição;
     }
 
     public abstract void processar();
