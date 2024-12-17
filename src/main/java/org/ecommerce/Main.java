@@ -10,6 +10,7 @@ import org.ecommerce.products.Produto;
 import org.ecommerce.products.ProdutoBase;
 import org.ecommerce.shipping.CalculadorFrete;
 import org.ecommerce.shipping.FretePorDistanciaStrategy;
+import org.ecommerce.shipping.FretePorPesoStrategy;
 
 public class Main {
     public static void main(String[] args) {
@@ -20,6 +21,7 @@ public class Main {
 
         System.out.println("--------- STRATEGY ---------");
         CalculadorFrete calculadorFrete = new CalculadorFrete();
+        calculadorFrete.setEstrategiaFrete(new FretePorPesoStrategy());
         calculadorFrete.setEstrategiaFrete(new FretePorDistanciaStrategy());
         System.out.println("Custo de frete: " + calculadorFrete.calcular(100,2));
 
