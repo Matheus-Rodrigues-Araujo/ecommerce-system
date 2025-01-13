@@ -6,18 +6,25 @@ import org.ecommerce.payments.PicPay;
 import java.util.Scanner;
 
 public class PicPayPayment implements IPayment {
-    private PicPay picPay;
+    private final PicPay picPay;
+
+    public PicPayPayment(PicPay picPay) {
+        if (picPay == null) throw new IllegalArgumentException("PicPay instance not found!");
+        this.picPay = picPay;
+    }
 
     @Override
-    public boolean payment(int amount) {
+    public boolean payment(double amount) {
+        System.out.println("------------------------");
         System.out.println(">> PicPay Payment <<");
+        System.out.printf("Processing payment of %s ...".formatted(amount));
 
-        System.out.printf("Processing payment of  %d%n ...", amount);
+        if (picPay.getAmount() < amount) throw new Error("Cannot pay due to your PicPay amount");
 
-        if (picPay.getAmount() <= amount) {
-            throw new Error("Cannot pay due to your picpay amount");
-        }
         picPay.setAmount(picPay.getAmount() - amount);
+        System.out.println();
+        System.out.println("Payment Successful!");
+
         return true;
     }
 
@@ -26,7 +33,7 @@ public class PicPayPayment implements IPayment {
         Scanner sc = new Scanner(System.in);
         try {
             System.out.println("------------------------");
-            System.out.println("> PicPay Payment");
+            System.out.println("> PicPay");
             System.out.println();
 
             System.out.println("Enter your credentials");
@@ -38,11 +45,11 @@ public class PicPayPayment implements IPayment {
             if (picPay.verify(email, password)) {
                 System.out.println("Valid Data!");
             } else {
-                System.out.println("Access denied!");
+                throw new Error("> Invalid credentials");
             }
 
         } catch (Error ex) {
-            throw new Error("Invalid Credentials");
+            throw new Error("Bad request");
         }
     }
 
