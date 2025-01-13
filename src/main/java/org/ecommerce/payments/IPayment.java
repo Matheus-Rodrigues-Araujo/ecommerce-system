@@ -1,7 +1,7 @@
 package org.ecommerce.payments;
 
 public interface IPayment {
-    boolean payment(int amount);
+    boolean payment(double amount);
 
     void proccessPayment();
 }
