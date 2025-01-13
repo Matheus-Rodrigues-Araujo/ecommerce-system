@@ -1,4 +1,4 @@
-package org.ecommerce.orders;
+package org.ecommerce.orders.models;
 
 import org.ecommerce.products.IProduct;
 
