@@ -2,23 +2,23 @@ package org.ecommerce.payments;
 
 public class PicPay {
 
-    private int amount;
+    private double amount;
     private String email;
     private String password;
     private boolean signedIn;
 
 
     public PicPay(String email, String password) {
-        this.amount = 2800;
+        this.amount = 8000;
         this.email = email;
         this.password = password;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
 
