@@ -16,7 +16,7 @@ import org.ecommerce.products.Product;
 
 public class Main {
     private static IPayment payment;
-    private static final int paymentMethod = 2;
+    private static final int paymentMethod = 1;
 
     public static void main(String[] args) {
 
