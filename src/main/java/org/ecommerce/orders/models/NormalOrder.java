@@ -1,5 +1,6 @@
 package org.ecommerce.orders.models;
 
+import org.ecommerce.orders.observers.IObserver;
 import org.ecommerce.payments.IPayment;
 import org.ecommerce.products.IProduct;
 
@@ -7,16 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NormalOrder implements IOrder {
-    private final List<OrderItem> items;
-
-
-    public NormalOrder() {
-        this.items = new ArrayList<>();
-    }
+    private final List<OrderItem> items = new ArrayList<>();
+    private final List<IObserver> observers = new ArrayList<>();
 
     @Override
     public void addItem(IProduct product, int quantity) {
+
         items.add(new OrderItem(product, quantity));
+        notifyObservers("Item added", "%s added to Normal Order".formatted(product.getName()));
     }
 
     @Override
@@ -31,9 +30,9 @@ public class NormalOrder implements IOrder {
         double totalAmount = calculateTotal();
         payment.proccessPayment();
         if (payment.payment(totalAmount)) {
-            System.out.printf("Normal order processed successfully! Total: %.2f%n", totalAmount);
+            notifyObservers("ORDER_PROCESSED", "Normal order processed successfully! Total: %s".formatted(totalAmount));
         } else {
-            System.out.println("Payment failed. Normal order not processed.");
+            notifyObservers("ORDER_FAILED", "Payment failed. Normal order not processed.");
         }
     }
 
@@ -46,4 +45,22 @@ public class NormalOrder implements IOrder {
     public String getDeliveryType() {
         return "Normal Delivery";
     }
+
+    @Override
+    public void addObserver(IObserver observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void removeObserver(IObserver observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers(String event, String message) {
+        for (IObserver observer : observers) {
+            observer.update(event, message);
+        }
+    }
+
 }
