@@ -15,6 +15,7 @@ public class CreditCardPayment implements IPayment {
 
     @Override
     public boolean payment(double amount) {
+        System.out.println("------------------------");
         System.out.println(">> Credit Card Payment <<");
         System.out.printf("Processing payment of %s ...".formatted(amount));
         if (creditCard.getAmount() < amount) throw new Error("Cannot pay due to your CreditCard amount");
@@ -42,6 +43,7 @@ public class CreditCardPayment implements IPayment {
 
             creditCard = new CreditCard(number, date, cvv);
             System.out.println(">>> Card accepted!");
+            System.out.println();
         } catch (Error ex) {
             throw new Error("> Payment denied: Invalid credentials");
         }
