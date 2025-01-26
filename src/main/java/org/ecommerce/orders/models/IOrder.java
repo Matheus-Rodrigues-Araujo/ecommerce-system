@@ -1,5 +1,6 @@
 package org.ecommerce.orders.models;
 
+import org.ecommerce.orders.observers.IObserver;
 import org.ecommerce.payments.IPayment;
 import org.ecommerce.products.IProduct;
 
@@ -15,4 +16,10 @@ public interface IOrder {
     List<OrderItem> getItems();
 
     String getDeliveryType();
+
+    void addObserver(IObserver observer);
+
+    void removeObserver(IObserver observer);
+
+    void notifyObservers(String event, String message);
 }
