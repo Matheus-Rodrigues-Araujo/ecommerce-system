@@ -1,5 +1,6 @@
 package org.ecommerce.orders.models;
 
+import org.ecommerce.orders.observers.IObserver;
 import org.ecommerce.payments.IPayment;
 import org.ecommerce.products.IProduct;
 
@@ -7,16 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ExpressOrder implements IOrder {
-    private final List<OrderItem> items;
+    private final List<OrderItem> items = new ArrayList<>();
+    private final List<IObserver> observers = new ArrayList<>();
     private static final double EXPRESS_DELIVERY_FEE = 20.00;
-
-    public ExpressOrder() {
-        this.items = new ArrayList<>();
-    }
 
     @Override
     public void addItem(IProduct product, int quantity) {
         items.add(new OrderItem(product, quantity));
+        notifyObservers("ITEM_ADDED", "Product added: %s, Quantity: %d".formatted(product.getName(), quantity));
     }
 
     @Override
@@ -32,9 +31,9 @@ public class ExpressOrder implements IOrder {
         double totalAmount = calculateTotal();
         payment.proccessPayment();
         if (payment.payment(totalAmount)) {
-            System.out.printf("Express order processed successfully! Total: %.2f%n", totalAmount);
+            notifyObservers("ORDER_PROCESSED", "Express order processed successfully. Total: %s".formatted(totalAmount));
         } else {
-            System.out.println("Payment failed. Normal order not processed.");
+            notifyObservers("ORDER_FAILED", "Express order payment failed.");
         }
     }
 
@@ -47,4 +46,22 @@ public class ExpressOrder implements IOrder {
     public String getDeliveryType() {
         return "Express Delivery";
     }
+
+    @Override
+    public void addObserver(IObserver observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void removeObserver(IObserver observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers(String event, String message) {
+        for (IObserver observer : observers) {
+            observer.update(event, message);
+        }
+    }
+
 }
