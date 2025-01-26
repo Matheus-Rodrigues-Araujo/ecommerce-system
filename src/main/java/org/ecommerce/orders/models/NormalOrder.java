@@ -1,15 +1,16 @@
 package org.ecommerce.orders.models;
 
-import org.ecommerce.orders.observers.IObserver;
+import org.ecommerce.orders.observers.IOrderObserver;
+import org.ecommerce.orders.observers.OrderSubject;
 import org.ecommerce.payments.IPayment;
 import org.ecommerce.products.IProduct;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class NormalOrder implements IOrder {
+public class NormalOrder extends OrderSubject implements IOrder {
     private final List<OrderItem> items = new ArrayList<>();
-    private final List<IObserver> observers = new ArrayList<>();
+    private final List<IOrderObserver> observers = new ArrayList<>();
 
     @Override
     public void addItem(IProduct product, int quantity) {
@@ -47,18 +48,18 @@ public class NormalOrder implements IOrder {
     }
 
     @Override
-    public void addObserver(IObserver observer) {
+    public void addObserver(IOrderObserver observer) {
         observers.add(observer);
     }
 
     @Override
-    public void removeObserver(IObserver observer) {
+    public void removeObserver(IOrderObserver observer) {
         observers.remove(observer);
     }
 
     @Override
     public void notifyObservers(String event, String message) {
-        for (IObserver observer : observers) {
+        for (IOrderObserver observer : observers) {
             observer.update(event, message);
         }
     }
