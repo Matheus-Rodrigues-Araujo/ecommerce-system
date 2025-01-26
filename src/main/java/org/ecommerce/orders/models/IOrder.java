@@ -1,6 +1,6 @@
 package org.ecommerce.orders.models;
 
-import org.ecommerce.orders.observers.IObserver;
+import org.ecommerce.orders.observers.IOrderObserver;
 import org.ecommerce.payments.IPayment;
 import org.ecommerce.products.IProduct;
 
@@ -17,9 +17,7 @@ public interface IOrder {
 
     String getDeliveryType();
 
-    void addObserver(IObserver observer);
+    void addObserver(IOrderObserver observer);
 
-    void removeObserver(IObserver observer);
-
-    void notifyObservers(String event, String message);
+    void removeObserver(IOrderObserver observer);
 }
