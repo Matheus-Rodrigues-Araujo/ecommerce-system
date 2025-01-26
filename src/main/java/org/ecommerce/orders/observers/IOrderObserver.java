@@ -1,5 +1,7 @@
 package org.ecommerce.orders.observers;
 
-public interface IObserver {
+import org.ecommerce.orders.models.IOrder;
+
+public interface IOrderObserver {
     void update(String event, String message);
 }
