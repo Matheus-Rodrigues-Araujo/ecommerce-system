@@ -7,7 +7,6 @@ public class PicPay {
     private String password;
     private boolean signedIn;
 
-
     public PicPay(String email, String password) {
         this.amount = 8000;
         this.email = email;

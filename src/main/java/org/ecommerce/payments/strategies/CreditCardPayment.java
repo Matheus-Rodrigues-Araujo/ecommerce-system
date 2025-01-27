@@ -40,14 +40,13 @@ public class CreditCardPayment implements IPayment {
             String cvv = sc.nextLine();
             System.out.println();
 
-            creditCard = new CreditCard(number, date, cvv);
-            System.out.println(">>> Card accepted!");
+            if (creditCard.verify(number, date, cvv)) {
+                System.out.println(">>> Card accepted!");
+            } else {
+                throw new Error("> Invalid credentials");
+            }
         } catch (Error ex) {
             throw new Error("> Payment denied: Invalid credentials");
         }
-    }
-
-    private boolean exinstingCard() {
-        return creditCard != null;
     }
 }
